@@ -1,0 +1,108 @@
+#menuV2 li, #menuV2 a {zoom:1;} /* Hacks for IE6, IE7 */
+#menuV2, #menuV2 ul
+{
+    min-width: 180px; /* Main Menu Item widths */
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-top:none;
+    position: relative; font-size:0;
+    list-style: none; margin: 0; padding: 0; display:block;
+    background: #ccc;/*url(../images/a.jpg);*/
+}
+                
+/* Top level menu links style
+---------------------------------------*/
+#menuV2{
+    min-height: 170px;
+    background:#777;
+    border:none;
+}
+#menuV2 li
+{
+    background: #aaa;
+    list-style: none; margin: 0; padding: 0;
+}
+#menuV2 > li:hover{
+    background:#F0F1F4;
+}
+#menuV2 li a:hover{
+    color: #333;
+}
+#menuV2 > li > a{
+    color:#ccc;
+}
+#menuV2 li a
+{
+    border-top: 1px solid #ccc;
+    display: block;
+    min-width: 185px;
+    /*overflow: auto; force hasLayout in IE7 */
+    color: #000;
+    text-decoration: none;
+    line-height:25px;
+    padding-left:10px;            
+}
+#menuV2 ul li a
+{
+    line-height:30px;
+}
+                
+#menuV2 li a.arrow:hover
+{
+    background-image:url(../../images/arrowon.gif);
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+        
+/*Sub level menu items
+---------------------------------------*/
+#menuV2 li ul
+{
+    position: absolute;
+    width: 200px; /*Sub Menu Items width */
+    visibility:hidden;
+}
+#menuV2 li.show ul{
+    visibility:visible;
+} 
+#menuV2 a.arrow
+{
+    background-image:url(../../images/arrow.gif);
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+#menuV2 li:hover, #menuV2 li.onhover
+{
+    background-position:0 -62px;
+}
+#menuV2 ul li
+{
+    background: #F0F1F4;
+    background-image:none;
+}
+#menuV2 ul li:hover, #menuV2 ul li.onhover
+{
+    background: #FFF;
+    background-image:none;
+}
+ul#menuV2 li.hovered .arrow{
+    background-image: none;
+}
+ul#menuV2 li.hovered{
+    background: #F0F1F4;
+    background-image: none;
+    background-image:url(../../images/arrowon.gif);
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+}
+/* Holly Hack for IE \
+* html #menuV2  li
+{
+    float:left;
+    height: 1%;
+}
+* html #menuV2  li a
+{
+    height: 1%;
+}*/
+/* End */

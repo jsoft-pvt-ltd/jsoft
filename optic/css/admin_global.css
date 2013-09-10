@@ -1,0 +1,25 @@
+.parent{
+    margin:10px;
+}
+.right{
+    float:right;
+}
+.left{
+    float:left;
+}
+.package_price{
+    font-weight: bold;
+    color:#cf0000;
+}
+.package_attributes,.package_price,.packages,.upgrades,.package_up{
+    margin-left:15px;
+}
+.margin_left{
+    margin-left:15px;
+}
+.margin_right{
+    margin-right: 15px;
+}
+.lens_type{
+    font-weight: bold;
+}

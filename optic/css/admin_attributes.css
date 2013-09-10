@@ -1,0 +1,63 @@
+/* 
+    Document   : admin_attributes
+    Created on : Apr 30, 2013, 9:56:20 AM
+    Author     : user
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.popup,.popup_edit,.popup_attributes{
+    display:none;
+    position: absolute;
+    z-index: 1000;
+    background:#555;
+    top:0;
+}
+.overlay{
+    background:#000;
+    opacity:0.5;
+    position: absolute;
+    z-index: 999;
+    top:0;
+    left:0;
+    display:none;
+}
+.popup_actions{
+    text-align: center;
+}
+.child_controls{
+    text-align:right;float:right;
+    overflow: auto;
+}
+div.attributes_container{
+    border:1px solid #f0f0f0;
+}
+div.attributes{
+    margin:5px;
+}
+.attribute_values,.sub_categories{
+    margin: 10px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+ul, li{
+    list-style: none;
+    padding:0;margin:0;
+}
+.records table tr th{
+    text-align: left;
+}
+a{
+    text-decoration: none;
+    color:#0a80e5;
+}
+a:hover{
+    text-decoration: underline;
+}

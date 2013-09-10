@@ -1,0 +1,17 @@
+.actions {
+    border: 1px solid #CCCCCC;
+    padding: 3px 5px;
+}
+.input_holder{
+    margin-top: 5px;
+}
+._input textarea{
+    width:450px;
+    height: 150px;
+}
+.power {
+    border: 1px solid #CCCCCC;
+    overflow-y: scroll;
+    width: 100%;
+    margin-top:15px;
+}

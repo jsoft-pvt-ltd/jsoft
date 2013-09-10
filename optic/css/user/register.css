@@ -1,0 +1,38 @@
+/* 
+    Document   : register
+    Created on : May 20, 2013, 11:11:20 AM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div#sliding_div_title{
+    padding:0 10px;
+    width:1000px;
+    margin-left: 1366px;;
+}
+div#sliding_div_content{padding: 0 10px;width: 350px;margin-left: 1366px;}
+p{margin: 5px;}
+div.label_input{overflow: auto;margin-bottom: 10px;}
+div.label{width:130px;float: left;padding:5px 0 0 0;}
+div.input{float: left;}
+div.submit{padding: 10px 0 0 5px;}
+input.input{border:1px solid #ccc;height: 20px;}
+label.error{padding:0 0 0 5px;color:#e80000;position: absolute;}
+.grid{
+    overflow: hidden;
+    margin-top:15px;
+}
+div.profile_pic{display:none;}
+#sliding_div_content h2 {
+    margin-bottom: 15px;
+}
+#sliding_div_title > p {
+    opacity: 0;
+}
+.submit {
+    width: 310px;
+}

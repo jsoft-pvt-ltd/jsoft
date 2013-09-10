@@ -1,0 +1,16 @@
+/* 
+    Document   : left_panel
+    Created on : May 20, 2013, 12:56:28 PM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div.dashboard_menu{padding:5px;}
+div.setting a{text-decoration: none;color:#555;}
+.setting {
+    line-height: 25px;
+}

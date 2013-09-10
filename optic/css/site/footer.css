@@ -1,0 +1,56 @@
+.footer{
+    width:1000px;
+    margin:0 auto;
+    overflow: hidden;
+}
+.partition_end{
+    float:left;
+    width:28%;
+    min-height: 135px;
+}
+.partition_center{
+    float:left;
+    width:40%;
+    min-height: 135px;
+}
+.social_n_info{
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    overflow: auto;
+    margin-bottom: 15px;
+}
+.be_in_touch{
+    margin-top: 25px;
+}
+.payment_methods{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    overflow: auto;
+    margin-bottom: 15px;
+}
+.footer_menu > .logo{
+    margin: 0 auto;
+    width:100px;
+}
+.navigation {
+    text-align: center;
+    color: #555555;
+    font-size: 12px;
+}
+.navigation a {
+    color: #555555;
+    font-size: 12px;
+    text-decoration: none;
+}
+.navigation{
+    line-height: 15px;
+}
+.nav_footer_li{
+    border-right: 1px solid #ccc;
+    display: inline-block;
+    margin-right:6px;
+    padding-right: 10px;
+}
+.nav_footer_li:last-child{
+    border-right: none
+}

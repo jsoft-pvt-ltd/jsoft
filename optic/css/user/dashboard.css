@@ -1,0 +1,19 @@
+/* 
+    Document   : dashboard
+    Created on : May 20, 2013, 12:58:13 PM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div.left_div{width: 200px;float:left;}
+div.right_div{width: 800px;float:left;}
+.input{color:#666;}
+.success{padding: 3px 0;color:#0a80e5;}
+.error_div{color:#e80000;padding:3px 0;}
+h3{margin: 5px 0;color:#666;}
+h4{margin: 3px 0;color:#666;}
+

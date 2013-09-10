@@ -1,0 +1,36 @@
+/* 
+    Document   : help
+    Created on : Jun 21, 2013, 11:41:49 AM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div.wrapper{padding:20px 0;overflow: auto;}
+div.left_section{width: 200px;float:left;}
+div.left_section ul li{width: 200px;padding: 5px 0;cursor: pointer;}
+div.right_section{float:left;width: 79%;}
+div.help_form{padding: 10px 0;}
+.btn_green{
+    cursor: pointer;
+    border: medium none;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    text-align: center;
+    vertical-align: middle;
+    background: none repeat scroll 0 0 #36AA29;
+    border-radius: 3px 3px 3px 3px;
+    text-shadow: 0.05em 0.05em #666666;
+    color:#fff;
+    margin-top: -3px;
+}
+div.icon_holder{text-align: center;}
+.active{font-weight: bold;}
+div.separator{height: 10px;}
+.description{color:#444;}

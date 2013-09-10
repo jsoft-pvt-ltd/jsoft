@@ -1,0 +1,33 @@
+/* 
+    Document   : login_unknown
+    Created on : May 21, 2013, 1:17:39 PM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div#sliding_div_title {
+    margin-left: 1366px;
+    margin-top: 15px;
+    padding: 0 10px;
+    width: 1000px;
+}
+div#sliding_div_content{padding: 0 10px;width: 280px;margin-left: 1366px;}
+div.grid{overflow: hidden;}
+div.label_input{overflow: auto;}
+div.label{width:100px;float: left;}
+div.input{width: 180px;float: left;}
+label.error{color:#e80000;}
+div.profile_pic{display:none;}
+div.error{color: #E80000;margin-top: -15px;padding: 5px 0;}
+
+.label_input .input {
+    margin-bottom: 5px;
+}
+
+.submit.btn {
+    width: 178px;
+}

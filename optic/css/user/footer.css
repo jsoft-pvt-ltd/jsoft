@@ -1,0 +1,13 @@
+/* 
+    Document   : footer
+    Created on : May 28, 2013, 5:26:15 PM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.footer{padding:3px;text-align: center;}
+

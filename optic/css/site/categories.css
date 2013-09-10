@@ -1,0 +1,61 @@
+.description{
+    margin-top: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+select{
+    border:1px solid #ccc;
+}
+.controllers{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+li.product {
+    display: inline-block;
+    margin-bottom: 25px;
+    margin-right: 15px;
+    width: 220px;
+}
+.best_sellers {
+    margin-top: 15px;
+    width: 225px;
+}
+.product ul li {
+    overflow: auto;
+    width: 225px;
+}
+.measurements{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.best_sellers{
+    /*border-bottom: 1px solid #ccc;*/
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.cat_glasses{
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+.promocode_result{
+    background: none repeat scroll 0 0 #366329;
+    color: #F5F5F5;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 0 15px;
+    padding: 20px;
+}
+.promocode_result > p {
+    font-size: 14px;
+}
+.measurements > ul li {
+    display: block;
+}

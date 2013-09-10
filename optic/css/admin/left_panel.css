@@ -1,0 +1,14 @@
+/* 
+    Document   : left_panel
+    Created on : May 21, 2013, 3:06:37 PM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+div.site_logo{float: left;}
+div.notifications{float: right;}
+

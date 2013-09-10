@@ -1,0 +1,15 @@
+/* 
+    Document   : profile_pic
+    Created on : May 20, 2013, 1:51:43 PM
+    Author     : instinctclassic
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+.error_for_file{color:#e80000;float:left;padding:4px;}
+div.label_input{overflow: auto;}
+div.input{float: left;}
+

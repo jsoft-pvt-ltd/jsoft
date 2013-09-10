@@ -1,0 +1,210 @@
+/*body {color: #444;font-family: arial,helvetica,"lucida grande",verdana,sans-serif;font-size: 14px;line-height: 1.6em;margin:0;}*/
+body {color: #444;font-family: 'Open Sans', sans-serif;font-size: 14px;line-height: 1.6em;margin:0;}
+h1{font-size: 16x;font-weight: normal;}
+h2{font-size: 15x;font-weight: normal;}
+h3{font-size: 14px;font-weight: normal;color:#333;}
+hr{color:#999;}
+#header{ background: url("../images/bg-header.jpg") repeat-x scroll center top transparent; height: 10px; width: 97%;padding: 20px;}
+#header_profile_pic_holder_div{padding:20px;}
+.header_profile_pic{height: 70px;width: 70px;margin-top: 33px;}
+.input{background-color: #FFFFFF !important;border: medium none;box-shadow: 0 0 4px #D9D9D9 inset;color: #555555;font-family: armata,trebuchet ms;height: 25px;margin: 0 !important;padding: 4px !important;width: 326px;}
+.input_like{background-color: #FFFFFF !important;border: medium none;box-shadow: 0 0 4px #D9D9D9 inset;color: #555555;font-family: armata,trebuchet ms;height: 25px;margin: 0 !important;padding: 4px !important;width: 273px;z-index: 1;}
+.submit{background-color: #098DF4;box-shadow: 0 0 5px #666 inset;color: #555555;font-family: armata,trebuchet ms;height: 35px;margin: 0 !important;padding: 3px !important;width: 333px;border: none;color:#fff;font-size: 14px;cursor: pointer;}
+.submit_like{background-color: #098DF4;color: #555555;font-family: armata,trebuchet ms;height: 33px;width: 90px;border: none;color:#fff;font-size: 14px;margin-left: 5px;position: absolute;margin-top: 0px;z-index: 1;}
+.input_wrapper { height: 35px; margin: 0 0 0 262px; position: absolute; width: 435px; z-index: 3;}
+.add_more{float: none;cursor: pointer;}
+.username{color: #000;}
+.clear{height: 5px;}
+.error_for_file{margin: -27px 0 0 690px;position: absolute;}
+.error_for_fld_album_name{margin: -28px 0 0 596px; position: absolute;}
+
+
+.file{  display: block; margin: -26px 0 0 482px; opacity: 0; /*position: absolute;*/ z-index: 0;}
+.img_list{list-style: none;margin-left: -40px;}
+.img_list > li{display: inline;}
+.holder{padding: 3px;}
+.img{max-width: 300px;max-height: 150px;}
+.trash{max-width: 35px;margin-left: -37px;opacity: 0;}
+h1 a {background: url("/skin/images/bg-header-logo.gif") no-repeat scroll left center transparent;color: #FFFFFF;display: block;height: 23px;line-height: 23px;overflow: hidden;text-indent: -9999px;width: 114px;}
+.error_div{background-color:#FF82AB;padding:6px;margin-bottom: 11px;margin-top: 5px;width: 321px;}
+/*.error{background-color:#FF82AB;padding:6px;margin-bottom: 11px;margin-top: 5px;margin-left: 5px;}*/
+.error{color:#cf0000;}
+.success{border:1px solid #006400;width:60%;background-color:#C1FFC1;padding:5px;margin-bottom: 11px;margin-top: 5px;}
+a {color: #444;text-decoration:none;}
+
+a:hover {color:#000;text-decoration:none;}
+.hover{color:#000;text-decoration:none;font-size: 15px;}
+
+.register{
+    float:right;font-size:14px;margin-right:300px;
+}	
+.social{float:left;width: 30px;}
+.footer{text-align:center;font-size:12px;color:#777777;width:100%;position:relative;bottom:0;margin:0px auto;}
+.footer a{font-size:11px;color:#848484;}
+
+/*========================I will do it from here=======================================================================*/
+.container{margin:0px auto;width:97%;overflow: auto;background-color: #f5f5f5;overflow: hidden;padding:20px;min-height: 500px;}
+.settings{padding:5px;font-size: 14px;text-transform: capitalize;}
+.left_panel{float:left;width:20%;min-height: 525px;}
+.right_panel{float:left;width:80%;min-height: 525px;}
+#img{
+/*box-shadow:0 1px 3px rgba(0, 0, 0, 0.3);*/
+float:left;
+}
+#show-sidebar{
+    float: left;
+    margin: 0 20px;
+    width: 260px;
+}
+#sidebar{
+}
+#sidebar .card{
+    background: none repeat scroll 0 0 #FCFCFC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    float: left;
+    margin: 0 0 10px;
+    padding: 10px;
+    position: relative;
+    width: 240px;
+    min-height:100px;
+}
+#show-avatar{
+    float:left;
+}
+#show-username{
+    float:left;
+    margin-left:10px;
+}
+#sidebar #user-info #show-username h2 {
+    margin: 0 0 10px;
+    padding: 0;
+    color:#000;
+    font:18px Arial,sans-serif !important;
+	
+}
+#sidebar #more-photos {
+    background: none repeat scroll 0 0 #FCFCFC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    float: left;
+    margin: 0 0 10px;
+    position: relative;
+    width: 260px;
+}
+#sidebar #more-photos .set-prev {
+    background-image: url("../../skin/images/carousel-arrow-left.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    left: 0;
+}
+
+#sidebar #more-photos .set-prev, #sidebar #more-photos .set-next{
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    display: block;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 30px;
+    z-index: 99;
+}
+#sidebar #more-photos .set-prev span, #sidebar #more-photos .set-next span {
+    display: none;
+}
+#sidebar #more-photos .set-prev:hover, #sidebar #more-photos .set-next:hover {
+    opacity: 0.9 !important;
+}
+#sidebar #more-photos .set-next {
+    background-image: url("../../skin/images/carousel-arrow-right.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    right: 0;
+}
+#sidebar #photo-info .description {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 2px 10px;
+}
+#sidebar .divider-horizontal {
+    border-top: 1px solid #E8E8E8;
+    height: 1px;
+    left: -10px;
+    margin: 10px 0;
+    padding: 0;
+    position: relative;
+    width: 260px;
+    z-index: auto;
+}
+#sidebar #photo-info #photo-information ul .make {
+    background: url("../../skin/images/icon-camera.png") no-repeat scroll left 4px transparent;
+}
+#sidebar #photo-info #photo-information ul .model {
+    background: url("../../skin/images/icon-camera.png") no-repeat scroll left 4px transparent;
+}
+#sidebar #photo-info #photo-information ul .exposure {
+    background: url("../../skin/images/icon-camera.png") no-repeat scroll left 4px transparent;
+}
+#sidebar #photo-info #photo-information ul .aperture {
+    background: url("../../skin/images/icon-aperture.png") no-repeat scroll left 4px transparent;
+}
+#sidebar #photo-info #photo-information ul .date {
+    background: url("../../skin/images/icon-taken-at.png") no-repeat scroll left 4px transparent;
+}
+#sidebar #photo-info #photo-information ul .iso {
+    background: url("../../skin/images/icon-iso.png") no-repeat scroll left 4px transparent;
+}
+#sidebar #photo-info #photo-information ul li strong {
+    display: inline-block;
+    width: 120px;
+    
+}
+#sidebar #photo-info #photo-information ul li span {
+    display: inline-block;
+    min-width: 70px;
+    padding: 0 10px 0 0;
+    vertical-align: top;
+    margin-left: 25px;
+}
+#userbar {
+    background: url("../../skin/images/border.gif") repeat-x scroll left bottom transparent;
+    margin: 0 auto 10px;
+    padding: 15px 0 20px;
+    position: relative;
+    width: 1180px;
+    overflow: auto;
+}
+#userbar .card {
+    background: none repeat scroll 0 0 #FCFCFC;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    color: #333333;
+    float: left;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0 20px 0 0;
+    min-height: 80px;
+    padding: 10px 15px;
+    position: relative;
+    width: 250px;
+}
+#userbar #showavatar {
+    border-radius: 3px 0 0 3px;
+    float: left;
+    height: 100px;
+    margin: -10px 15px 0 0px;
+    overflow: hidden;
+    padding: 0;
+    width: 100px;
+}
+#userbar #showavatar img {
+    min-height: 100px;
+    width: 100px;
+}
+#userbar #showusername #username_container {
+    margin-top: 2px;
+    max-height: 50px;
+    overflow: hidden;
+    padding: 0;
+}
+

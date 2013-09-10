@@ -1,0 +1,9 @@
+1 Insert Upgrades
+	http://localhost/optic/admin/upgrade_controller/
+	Add Attributes
+2. Package Attributes
+	http://localhost/optic/admin/package_attributes_controller
+3. Packages
+	http://localhost/optic/admin/package_controller
+4. Lens Type:
+	http://localhost/optic/admin/lens_controller/

@@ -1,0 +1,101 @@
+/* Style for Usual tabs */
+.usual_header {
+  color:#111;
+  padding:5px;
+  margin:-10px auto;
+}
+.usual_header li { list-style:none; float:left; }
+.usual_header ul a {
+  display:block;
+  padding:6px 10px;
+  text-decoration:none!important;
+  margin:1px;
+  margin-left:0;
+  color:#555;
+  background:none;
+}
+.usual_header ul a:hover {
+  color:#FFF;
+  background:#111;
+  }
+
+.usual_header ul a.selected {
+    background: none repeat scroll 0 0 #CCCCCC;
+    color: #333;
+    cursor: default;
+    margin-bottom: 0;
+    margin-right: -1px;
+    margin-top: 0;
+    padding-bottom: 8px;
+    position: relative;
+}
+.usual_header div.tabs {
+  padding:10px 10px 8px 10px;
+  *padding-top:3px;
+  *margin-top:-15px;
+  clear:left;
+}
+.usual_header div a { color:#000; font-weight:bold; }
+.usual_header ul li{
+/*    border-left: 1px solid #ccc;*/
+}
+.usual_header ul li:first-child{
+    border-left: none;
+}
+
+/*#usual2 { background:#0A0A0A; border:1px solid #1A1A1A; }
+#usual2 a { background:#222; }
+#usual2 a:hover { background:#000; }
+#usual2 a.selected { background:none; }*/
+#tabs3 { background:#FF9; }
+#usual_header > ul {
+    border-bottom: 1px solid #CCCCCC;
+    overflow: auto;
+}
+#usual_cat > ul {
+    border-bottom: 1px solid #CCCCCC;
+    overflow: auto;
+}
+.usual_cat {
+  color:#111;
+  padding:5px;
+  margin:8px auto;
+}
+.usual_cat li { list-style:none; float:left; }
+.usual_cat ul a {
+  display:block;
+  padding:6px 10px;
+  text-decoration:none!important;
+  margin:1px;
+  margin-left:0;
+  color:#555;
+  background:none;
+}
+.usual_cat ul a:hover {
+  color:#FFF;
+  background:#111;
+  }
+
+.usual_cat ul a.selected {
+    background: none repeat scroll 0 0 #CCCCCC;
+    color: #333;
+    cursor: default;
+    margin-bottom: 0;
+    margin-right: -1px;
+    margin-top: 0;
+    padding-bottom: 8px;
+    position: relative;
+}
+.usual_cat div.tabs {
+  padding:10px 10px 8px 10px;
+  *padding-top:3px;
+  *margin-top:-15px;
+  clear:left;
+}
+.usual_cat div a { color:#000; font-weight:bold; }
+.usual_cat ul li{
+    border-left: 1px solid #ccc;
+}
+.usual_cat ul li:first-child{
+    border-left: none;
+}
