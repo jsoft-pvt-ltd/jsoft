@@ -134,14 +134,8 @@ class Product_model extends CI_Controller{
         $query = $query. " LIMIT ".$offset.','.$num;
         return($this->db->query($query));
     }
-    function get_products_by_sub_cat_id($num=0,$offset=0,$id ,$admin=0){
+    function get_products_by_sub_cat_id($num=0,$offset=0,$id ,$admin=0){   
         $sort_by = $this->session->userdata('sort_by');
-//        $this->db->where('fld_subcategory',$id);
-//        $admin_id = $this->session->userdata('admin_id');
-//        if($admin==0){$this->db->where('fld_status',1);}
-//        $this->db->limit($num, $offset);
-//        return $this->db->get('tbl_product');
-        
         if($offset == 0 || $offset == NULL || $offset==''){
             $offset = 0;
         }

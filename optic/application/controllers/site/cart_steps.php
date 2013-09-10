@@ -869,7 +869,7 @@ class Cart_steps extends CI_Controller{
                 'fld_cp'=>$value->fld_cp,
                 'fld_discount'=>$value->fld_discount,
                 'fld_sp'=>$value->fld_sp,
-                'fld_status'=>$value->fld_status,
+                'fld_status'=>$value->fld_tatus,
                 'fld_shelf_location'=>$value->fld_shelf_location,
                 'fld_description'=>$value->fld_description,
                 'fld_location'=>$value->fld_location,

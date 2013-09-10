@@ -11,7 +11,7 @@
   text-decoration:none!important;
   margin:1px;
   margin-left:0;
-  color:#555;
+  color:#555 !important;
   background:none;
 }
 .usual_header ul a:hover {
@@ -37,7 +37,7 @@
 }
 .usual_header div a { color:#000; font-weight:bold; }
 .usual_header ul li{
-/*    border-left: 1px solid #ccc;*/
+    border-left: 1px solid #ccc;
 }
 .usual_header ul li:first-child{
     border-left: none;

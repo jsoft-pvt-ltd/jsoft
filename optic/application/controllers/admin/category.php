@@ -47,12 +47,10 @@ class Category extends CI_Controller{
         $data_cat['fld_location'] = 'images/'.date("Y").'/'.date("m").'/'.date("d").'/';
         $data_cat['fld_image'] = $fld_image[0];
         $cat_id = $this->categories_model->insert_category($data_cat);
-//        print_r($_FILES['subcat_image_new']);exit;
         $image_sub['sub']=$_FILES['subcat_image_new'];
         $images_names=$this->folders->uploadFiles($image_sub, $data_cat['fld_location']);
         foreach(array_keys($_POST['sub_name_new']) as $key) {
             if(!empty($_POST['sub_name_new'][$key])){
-//                echo $_POST['sub_name_new'][$key];
                 $max_rank = $this->sub_categories_model->get_max_rank_by_cat_id($cat_id);
                 $max_rank+=1;
                 $data_sub_cat= array(
@@ -67,25 +65,32 @@ class Category extends CI_Controller{
                 $this->sub_categories_model->insert_sub_category_values($data_sub_cat);
             }
         }
-//        exit;
         $this->db->trans_complete();
         $this->session->set_flashdata('msg','<script>alert("Categories and its value succcessfully inserted.")</script>');
         redirect($_SERVER["HTTP_REFERER"]);
     }
     
-    function interchange_rank($rank,$pos,$id=0,$sub_cid=0){ //$Id is the category id for sub categories and is optional $sub_cid is subcategory id
-        echo 'heoo';
-        print_r($this->output);
-        echo "anjin";
+    function interchange_rank($rank,$next_rank,$pos,$id=0,$sub_cid=0){ //$Id is the category id for sub categories and is optional, $sub_cid is subcategory id
+        header("Cache-Control: no-cache, must-revalidate");
         if($id!=0){
-            $this->sub_categories_model->interchange_rank($rank,$pos,$id, $sub_cid);
+            $this->sub_categories_model->interchange_rank($rank,$next_rank,$pos,$id, $sub_cid);
         }
-        else $this->categories_model->interchange_rank($rank,$pos);
+        else $this->categories_model->interchange_rank($rank,$next_rank,$pos);
         
     }
     function get_max_rank($id=0){
-        echo $this->categories_model->get_max_rank($id);
+        return $this->categories_model->get_max_rank($id);
     }
+    function get_min_rank($id=0){
+        return $this->categories_model->get_min_rank($id);
+    }
+    function get_max_min_rank($id){
+        $max_rank=$this->get_max_rank($id);
+        $min_rank=$this->get_min_rank($id);
+        echo $max_rank.'-'.$min_rank;
+    }
+    
+    
     function get_categories_n_subs_by_id($id){ ///this is category id;
         header('Content-type: application/javascript');
         $data['categories'] = $this->categories_model->get_categories_by_id($id);
@@ -93,9 +98,6 @@ class Category extends CI_Controller{
         echo json_encode($data);
     }
     function edit_categories($id){
-//            echo '<pre>';
-//            print_r($_POST);
-//            exit;
         $this->load->helper('login_helper');admin_log();
         if($_FILES['image']['size'] == 0){
         $data_cat = array(
@@ -215,31 +217,29 @@ class Category extends CI_Controller{
         $location = 'images/'.date("Y").'/'.date("m").'/'.date("d").'/';
         $subcat_image_names=$this->folders->uploadFiles($image_sub, $location);
         foreach(array_keys($_POST['sub_name_new']) as $key=>$value) { 
-//            if($_POST['sub_name_new'][$key]!=''){
-                $max_rank = $this->sub_categories_model->get_max_rank_by_cat_id($id);
-                $max_rank+=1;
-                if(strlen($subcat_image_names[$key])==0){
-                    $data_sub_cat= array(
-                    'fld_name' => $_POST['sub_name_new'][$key],
-                    'fld_description' => $_POST['sub_description_new'][$key],
-                    'fld_category_id'=>$id,
-                    'fld_rank'=>$max_rank,
-                    'fld_status'=>$_POST['sub_status'][$key]
-                );
-                }else{
-                    $data_sub_cat= array(
-                    'fld_name' => $_POST['sub_name_new'][$key],
-                    'fld_description' => $_POST['sub_description_new'][$key],
-                    'fld_category_id'=>$id,
-                    'fld_rank'=>$max_rank,
-                    'fld_status'=>$_POST['sub_status'][$key],
-                    'fld_location'=>$location,
-                    'fld_image'=>$subcat_image_names[$key]
-                );
-                $data_sub_cat['fld_rank']=$max_rank;
-                }
-                $this->sub_categories_model->insert_sub_category_values($data_sub_cat); //data, id[category id]
-//            }
+            $max_rank = $this->sub_categories_model->get_max_rank_by_cat_id($id);
+            $max_rank+=1;
+            if(strlen($subcat_image_names[$key])==0){
+                $data_sub_cat= array(
+                'fld_name' => $_POST['sub_name_new'][$key],
+                'fld_description' => $_POST['sub_description_new'][$key],
+                'fld_category_id'=>$id,
+                'fld_rank'=>$max_rank,
+                'fld_status'=>$_POST['sub_status'][$key]
+            );
+            }else{
+                $data_sub_cat= array(
+                'fld_name' => $_POST['sub_name_new'][$key],
+                'fld_description' => $_POST['sub_description_new'][$key],
+                'fld_category_id'=>$id,
+                'fld_rank'=>$max_rank,
+                'fld_status'=>$_POST['sub_status'][$key],
+                'fld_location'=>$location,
+                'fld_image'=>$subcat_image_names[$key]
+            );
+            $data_sub_cat['fld_rank']=$max_rank;
+            }
+            $this->sub_categories_model->insert_sub_category_values($data_sub_cat); //data, id[category id]
         }
     }
     

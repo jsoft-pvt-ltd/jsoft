@@ -19,11 +19,11 @@
     </div>
     <div class="categorized_items">
         <div class="left items border_right">
-            <?php if(!empty($contact_lens)&& $total_rows>9):?>
+            <?php if(!empty($contact_lens)&& $contact_lens->num_rows()>9):?>
             <div class="controllers margin_right">
                 <div class="sorting left margin_right">
                     Sort By: 
-                    <select onchange="sort_by(this.value)">
+                    <select>
                         <option value="random">Random</option>
                         <option value="asc_price">Asc Price</option>
                         <option value="desc_price">Desc Price</option>
@@ -33,7 +33,7 @@
                 
                 <div class="items_to_display left">
                     Display:
-                    <select onchange="display_items(this.value)" class="display_item">
+                    <select onchange="display_items(this.value)">
                         <option value="9" <?php if($per_page==9) echo ' selected="selected"'?>>9 Items</option>
                         <option value="18" <?php if($per_page==18) echo ' selected="selected"'?>>18 Items</option>
                         <option value="36" <?php if($per_page==36) echo ' selected="selected"'?>>36 Items</option>
@@ -134,7 +134,7 @@
                                 <?php endif;?>
                             </li>
                             <li>
-                                <div class="right price">$<?php echo $best_seller->fld_sp;?></div>
+                                <div class="right price">$<?php echo $best_seller->fld_discount_price;?></div>
                             </li>
                             <li>
                                 <div class="left wishlist"><a href="javascript:void(0)" onclick="wishlist(<?php echo $best_seller->fld_id;?>)" class="btn_wishlist">Add to Wishlist</a></div>
@@ -166,9 +166,5 @@
 <script>
     function display_items(nos){
         window.location.href='<?php echo base_url().'accessories/'?>'+nos;
-    }
-    function sort_by(value){
-        var display_item = $(".display_item").val();
-        location.href=base_url+'site/contact_lens/lens_set_sort_by/'+value+'/'+display_item;
     }
 </script>

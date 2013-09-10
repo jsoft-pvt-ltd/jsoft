@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name ='title' content="<?php echo $title ?>"/>
         <meta name="Description" content="<?php
@@ -92,7 +93,197 @@
                                 <li><a href="<?php echo base_url().'user/login/logout'?>" title="Logout">Logout</a> </li>
                             <?php endif;?>
                             <li>
-                                <input type="text" class="basic_menu_search_bar" placeholder="search..." id="search_keyword" name="searc_keyword"/>
+                                <style>                                    
+                                    .search_img {
+                                        background: none repeat scroll 0 0 #333333;
+                                        margin-left: 11px;
+                                        margin-top: -7px;
+                                        padding: 7px 8px;
+                                        position: absolute;
+                                    }
+                                    .search_img_holder {
+                                        height: 15px;
+                                        width: 42px;
+                                    }
+                                    .search_img >li> img {
+                                        vertical-align: middle;
+                                    }
+                                </style>
+                                <!--<input type="text" class="basic_menu_search_bar" placeholder="search..." id="search_keyword" name="searc_keyword"/>-->
+<!--                                <div class="search_img_holder">
+                                    <div class="search_img">
+                                        <img src="<?php echo base_url().'images/search.png'?>"/>
+                                    </div>
+                                </div>-->
+                                <!--::::::::::::::::::::::::::::::::::::::::Search Navigation:::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
+                                    <!--<div class="advanced_menu right" style="display:block;">-->
+                                        <div class="search search_img_holder" style="margin-left: -1px;">
+                                            <ul class="search_img">
+                                                <li class="title">
+                                                    <img src="<?php echo base_url().'images/search.png'?>"/>
+                                                    <div class="sub_menu_holder search_menu">
+                                                        <?php $this->load->helper('search_helper');$product_types = product_types();?>
+                                                            <div class="sub_menu">
+                                                                <div id="adv2"> 
+                                                                    <div id="usual_header" class="usual_header"> 
+                                                                        <ul> 
+                                                                            <?php 
+                                                                            $count=1;
+                                                                            foreach($product_types->result() as $product_type):?>
+                                                                            <li><a class="selected" href="#tab<?php echo $count;?>"><?php echo $product_type->fld_name;?></a></li> 
+                                                                            <?php $count++;endforeach;?>
+                                                                        </ul>
+                                                                        <?php $count_tab=1;foreach($product_types->result() as $product_type):?>
+
+                                                                            <div id="tab<?php echo $count_tab;?>" class="tabs">
+                                                                                <?php 
+//                                                                                    if($count_tab==1) echo '';
+//                                                                                    else 
+                                                                                        if($count_tab==2){;
+                                                                                ?>
+                                                                                <form id="frm_search<?php echo $count_tab;?>" name="frm_search<?php echo $count_tab;?>" method="get" action="<?php echo base_url().'site/search/index';?>" >
+                                                                                <div class="catsh">
+                                                                                    <?php $this->load->helper('search_helper');$cats = cats_subcats();?>
+                                                                                    <?php foreach($cats as $category):?>
+                                                                                    <div class="cath" id="cat_<?php echo $category['fld_id'];?>">
+                                                                                        <input type="checkbox" name="cat[]" value="<?php echo $category['fld_id'];?>" onclick="check_all(<?php echo $count_tab;?>,<?php echo $category['fld_id'];?>)" <?php if(isset($ucat)){ for($c=0;$c<sizeof($ucat);$c++){  if($ucat[$c]==$category['fld_id']){  echo 'checked="true"';$cf="true";break;}}}?>>
+
+
+
+
+                                                                                            <?php echo $category['fld_name'];?>
+                                                                                        <div class="subcath">
+                                                                                            <?php //$this->load->helper('search_helper');$subcats = subcategories($category->fld_id);?>
+                                                                                            <ul>
+                                                                                            <?php foreach($category['subcat'] as $subcat):?>
+
+                                                                                                    <li>
+                                                                                                        <input type="checkbox" name="sub[]" value="<?php echo $subcat['subcat_id'];?>" disabled="disabled" <?php if(isset($usub)){   for($s=0;$s<sizeof($usub);$s++){    if($usub[$s]==$subcat['subcat_id']){   echo 'checked="true"';break;}}}?>> <?php echo $subcat['subcat_name'];?>
+                                                                                                    </li>
+
+
+                                                                                            <?php endforeach;?>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <?php if(isset($ucat))
+                                                                                    {
+                                                                                       echo '<script>';
+                                                                                       for($c=0;$c<sizeof($ucat);$c++)
+                                                                                       {
+                                                                                           echo 'prevent('.$count_tab.','.$ucat[$c].');';
+                                                                                       }
+                                                                                       echo '</script>';
+                                                                                    }?>
+                <!--:::::::::::::::::::::::::::::::::::::Range::::::::::::::::::::::::::::::::::-->                                                                    
+                <script type="text/javascript">
+                    var min = <?php echo $category['min_price'];?>;
+                    var max = <?php echo $category['max_price'];?>;
+                    $(document).ready(function() {
+                        $( "#slider-range" ).slider({
+                        range: true,
+                        min: min,
+                        max: max,
+                        values: [ min , max ],
+                        change: function( event, ui ) {
+                            $( "#min_price" ).val(ui.values[ 0 ]);
+                            $( "#max_price" ).val(ui.values[ 1 ]);
+                            set_range(ui.values[ 0 ], ui.values[ 1 ]);
+                        }
+                        });
+                        $( "#min_price" ).val( $( "#slider-range" ).slider( "values", 0 ));
+                        $( "#max_price" ).val( $( "#slider-range" ).slider( "values", 1 ));
+                    });
+                </script>
+                <!--::::::::::::::::::::::::::::::::::Range:::::::::::::::::::::::::::::::::::::::::-->                                                                    
+                <?php endforeach;?>
+                </div>
+                <div class="atth">    
+                <?php
+
+                $this->load->helper('admin/attributes_helper');
+                $attributes = attributes($product_type->fld_id);
+                $attributes_values = attributes_values();
+
+
+                /*-----------------------------------------------------------------attributes tree---------------------------------------------------------------------*/
+                $attrs = get_attributes();        
+                foreach($attrs as $key=>$value)
+                    {
+                        $attributess[$value->fld_id]['fld_id']=$value->fld_id;
+                        $attributess[$value->fld_id]['fld_name']=$value->fld_name;
+                        $attributess[$value->fld_id]['fld_product_type_id']=$value->fld_product_type_id;
+                        $attributess[$value->fld_id]['fld_location']=$value->fld_location;
+                        $attributess[$value->fld_id]['fld_image']=$value->fld_image;
+                        $attributess[$value->fld_id]['attr'][$value->attr_id]=array(
+                                                                                'attr_id'=>$value->attr_id,
+                                                                                'attr_name'=>$value->attr_name,
+                                                                                'parent_id'=>$value->parent_id,
+                                                                                'fld_attribute_id'=>$value->fld_attribute_id,    
+                                                                            );
+                    }
+                foreach($attributess as $keys=>$values){
+                    echo '<div class="search_params left"> '.$values['fld_name'];
+                    $tree ="";
+                    foreach($values['attr'] as $node){
+                            $new_node = new stdClass();
+                            if($values['fld_id'] == $node['fld_attribute_id']){
+                            foreach($node as $key=>$value){
+                                $new_node->$key = $value;
+
+                            }             
+
+                            $nodes[$node['attr_id']] = array(
+                                'value' =>$new_node
+                            );
+
+                            if ($node['parent_id']==0)
+                            {
+                                $tree[$node['attr_id']] = &$nodes[$node['attr_id']];
+                            }else
+                            {
+                                if (($nodes[$node['parent_id']])==0){
+                                    $nodes[$node['parent_id']] = array();
+                                }
+                                $nodes[$node['parent_id']][$node['attr_id']] = &$nodes[$node['attr_id']];
+                            }
+                        $node=""; }
+                    }
+                    displayArrayRecursively($values['fld_id'], $tree);
+                    $temp = '';
+                    echo '</div>';
+                }
+                ?>    
+                </div>
+                <!-- :::::::::::::::::::::::::::::::::::::::::::price range slider:::::::::::::::::::::::::::::::::::::::::-->
+
+                <div>Price Range 
+                    <p>Rs.<input type="text" id="min_price" name="min_price" style="border: 0; color: #333333;background: none; font-weight: bold;width:30px;">- Rs.<input type="text" id="max_price" name="max_price" style="border: 0; color: #333333;background: none; font-weight: bold;"></p>
+                    <div id="slider-range"></div>
+                </div>
+                <br>
+                <!-- :::::::::::::::::::::::::::::::::::::::::::price range slider:::::::::::::::::::::::::::::::::::::::::-->
+                                                                                    <div class="submit">
+                                                                                         <input type="submit" value="Search" class="submit">
+                                                                                    </div>
+                                                                                </form>
+                                                                                <?php }?>
+                                                                            </div>
+                                                                        <?php $count_tab++;endforeach;?>
+                                                                    </div>
+                                                                </div>
+
+                                                              <!--=======================================================================================-->
+                                                            </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    <!--</div>-->
+                                    <!--::::::::::::::::::::::::::::::::::::::::Search Navigation Ends:::::::::::::::::::::::::::::::::::::::::::::::::::-->
+                    
+                    
+                    
                             </li>
                             <li class="my_cart">
                                 <a href="<?php echo base_url();?>site/cart_steps/view_cart">
@@ -265,295 +456,10 @@
                         </ul>
                     </div>
                     
-                    <!--::::::::::::::::::::::::::::::::::::::::Search Navigation:::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
-                    <div class="advanced_menu right" style="display:block;">
-                        <div class="main_menu left glasses" id="glasses" style="border:none;">
-                                <ul class="menu_glasses left">
-                                    <li class="title">
-                                        <h3>Glasses</h3>
-                                        <div class="sub_menu_holder glasses_menu">
-                                            <div class="sub_menu">
-                                                <div class="vertical_menu left">
-                                                <ul id="menuV2">
-                                                    <?php
-                                                    $show = 1;
-                                                    foreach($categories->result() as $category):
-                                                        if($category->fld_status!=0):
-                                                    ?>
-                                                   <?php $data=array($category->fld_description, $category->fld_name);?>  Send image here instead fld_name 
-                                                    <?php 
-                                                        $desc = substr(str_replace("'","&rsquo;",$category->fld_description),0,200);
-                                                        $img = str_replace("'","&rsquo;",$category->fld_name);
-                                                    ?>
-                                                    <li> 
-                                                        <a onmouseover="change_info('<?php echo $desc;?>','<?php echo $img?>');" href="<?php echo base_url().url_title(strtolower($category->fld_name)).'-'.$category->fld_id.'/9';?>"><?php echo $category->fld_name?></a>
-                                                            <?php $has_child = has_child($category->fld_id);
-                                                                if($has_child==true):
-                                                            ?>
-                                                        <ul <?php
-                                                            if($show==1){
-                                                                echo 'class="show"';
-                                                                $show = 0;
-                                                            }
-                                                        ?>>
-                                                            <?php
-                                                            foreach($sub_categories->result() as $sub_category):
-                                                                if($sub_category->fld_category_id==$category->fld_id && $sub_category->fld_status!=0):
-                                                            ?>
-                                                            <?php 
-                                                                $sub_desc = substr(str_replace("'","&rsquo;",$sub_category->fld_description),0,200);
-                                                                $sub_img = str_replace("'","&rsquo;",$sub_category->fld_name);
-                                                            ?>
-                                                                <li>
-                                                                <?php 
-                                                                if($sub_category->fld_name!="" || $sub_category->fld_name != NULL){
-                                                                    $address = url_title(strtolower($category->fld_name)).'/'.url_title(strtolower($sub_category->fld_name));
-                                                                }
-                                                                else $address = url_title(strtolower(strtolower($category->fld_name)));
-                                                                ?>
-                                                                    <a onmouseover="change_info('<?php echo $sub_desc;?>','<?php echo $sub_img?>');" href="<?php echo base_url().$address.'-'.$sub_category->fld_id.'/9';?>">
-
-                                                                        <?php echo $sub_category->fld_name; ?>
-                                                                    </a>
-                                                                </li>
-                                                            <?php
-                                                                endif;
-                                                            endforeach;
-                                                            ?>
-                                                        </ul>
-                                                        <?php endif;?>
-                                                    </li>
-                                                    <?php
-                                                        endif;
-                                                        endforeach;
-                                                    ?>
-                                                  </ul>
-                                                </div>
-                                                <div class="cat_img right">
-                                                    <ul>
-                                                        <li><img src="<?php echo base_url().'images/a.jpg'?>" width="250"/></li>
-                                                        <li id="description"><p>
-                                                                Please choose a category that is preferable for you. Thank you.<br/>
-                                                                .:OpticStore:.
-                                                            </p></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><span>Any Glasses</span></li>
-                                </ul>
-                            </a>
-                        </div>
-                        <div class="main_menu left search" style="margin-left: -1px;">
-                            <ul class="menu_search">
-                                <li class="title">
-                                    <h3>Search</h3>
-                                    <div class="sub_menu_holder search_menu">
-                                        <?php $this->load->helper('search_helper');$product_types = product_types();?>
-                                            <div class="sub_menu">
-                                              =======================================================================================
-                                                <div id="adv2"> 
-                                                    <div id="usual_header" class="usual_header"> 
-                                                        <ul> 
-                                                            <?php 
-                                                            $count=1;
-                                                            foreach($product_types->result() as $product_type):?>
-                                                            <li><a class="selected" href="#tab<?php echo $count;?>"><?php echo $product_type->fld_name;?></a></li> 
-                                                            <?php $count++;endforeach;?>
-                                                        </ul>
-                                                        <?php $count_tab=1;foreach($product_types->result() as $product_type):?>
-                                                            
-                                                            <div id="tab<?php echo $count_tab;?>" class="tabs">
-                                                                <?php 
-                                                                    if($count_tab==1) echo 'this is tab1';
-                                                                    else if($count_tab==2){ echo 'this is tab2';
-                                                                ?>
-                                                                <form id="frm_search<?php echo $count_tab;?>" name="frm_search<?php echo $count_tab;?>" method="get" action="<?php echo base_url().'site/search/index';?>" >
-                                                                <div class="catsh">
-                                                                    <?php $this->load->helper('search_helper');$cats = cats_subcats();
-                                                                    //echo '<pre>';print_r($cats);echo '<pre>';exit;?>
-                                                                    <?php foreach($cats as $category):?>
-                                                                    <div class="cath" id="cat_<?php echo $category['fld_id'];?>">
-                                                                        <input type="checkbox" name="cat[]" value="<?php echo $category['fld_id'];?>" onclick="check_all(<?php echo $count_tab;?>,<?php echo $category['fld_id'];?>)" <?php if(isset($ucat)){ for($c=0;$c<sizeof($ucat);$c++){  if($ucat[$c]==$category['fld_id']){  echo 'checked="true"';$cf="true";break;}}}?>>
-                                                                        
-                                                                        
-
-                                                                        
-                                                                            <?php echo $category['fld_name'];?>
-                                                                        <div class="subcath">
-                                                                            <?php //$this->load->helper('search_helper');$subcats = subcategories($category->fld_id);?>
-                                                                            <ul>
-                                                                            <?php foreach($category['subcat'] as $subcat):?>
-                                                                                
-                                                                                    <li>
-                                                                                        <input type="checkbox" name="sub[]" value="<?php echo $subcat['subcat_id'];?>" disabled="disabled" <?php if(isset($usub)){   for($s=0;$s<sizeof($usub);$s++){    if($usub[$s]==$subcat['subcat_id']){   echo 'checked="true"';break;}}}?>> <?php echo $subcat['subcat_name'];?>
-                                                                                    </li>
-                                                                                        
-                                                                                
-                                                                            <?php endforeach;?>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                    <?php if(isset($ucat))
-                                                                    {
-                                                                       echo '<script>';
-                                                                       for($c=0;$c<sizeof($ucat);$c++)
-                                                                       {
-                                                                           echo 'prevent('.$count_tab.','.$ucat[$c].');';
-                                                                       }
-                                                                       echo '</script>';
-                                                                    }?>
-<!--:::::::::::::::::::::::::::::::::::::Range::::::::::::::::::::::::::::::::::-->                                                                    
-<script type="text/javascript">
-    var min = <?php echo $category['min_price'];?>;
-    var max = <?php echo $category['max_price'];?>;
-    $(document).ready(function() {
-        $( "#slider-range" ).slider({
-        range: true,
-        min: min,
-        max: max,
-        values: [ min , max ],
-        change: function( event, ui ) {
-            $( "#min_price" ).val(ui.values[ 0 ]);
-            $( "#max_price" ).val(ui.values[ 1 ]);
-            set_range(ui.values[ 0 ], ui.values[ 1 ]);
-        }
-        });
-        $( "#min_price" ).val( $( "#slider-range" ).slider( "values", 0 ));
-        $( "#max_price" ).val( $( "#slider-range" ).slider( "values", 1 ));
-    });
-</script>
-<!--::::::::::::::::::::::::::::::::::Range:::::::::::::::::::::::::::::::::::::::::-->                                                                    
-                                                                    <?php endforeach;?>
-                                                                </div>
-                                                                <div class="atth">    
-                                                                <?php
-                                                                    
-                                                                    $this->load->helper('admin/attributes_helper');
-                                                                    $attributes = attributes($product_type->fld_id);
-                                                                    $attributes_values = attributes_values();
-                                                                    
-                                                                    
-/*-----------------------------------------------------------------attributes tree---------------------------------------------------------------------*/
-$attrs = get_attributes();        
-foreach($attrs as $key=>$value)
-    {
-        $attributess[$value->fld_id]['fld_id']=$value->fld_id;
-        $attributess[$value->fld_id]['fld_name']=$value->fld_name;
-        $attributess[$value->fld_id]['fld_product_type_id']=$value->fld_product_type_id;
-        $attributess[$value->fld_id]['fld_location']=$value->fld_location;
-        $attributess[$value->fld_id]['fld_image']=$value->fld_image;
-        $attributess[$value->fld_id]['attr'][$value->attr_id]=array(
-                                                                'attr_id'=>$value->attr_id,
-                                                                'attr_name'=>$value->attr_name,
-                                                                'parent_id'=>$value->parent_id,
-                                                                'fld_attribute_id'=>$value->fld_attribute_id,    
-                                                            );
-    }
-//    echo '<pre>';print_r($attributess);exit;
-foreach($attributess as $keys=>$values){
-    echo '<div class="search_params left"> '.$values['fld_name'];
-    $tree ="";
-    foreach($values['attr'] as $node){
-            $new_node = new stdClass();
-            if($values['fld_id'] == $node['fld_attribute_id']){
-            foreach($node as $key=>$value){
-                $new_node->$key = $value;
-               
-            }             
-         
-            $nodes[$node['attr_id']] = array(
-                'value' =>$new_node
-            );
-
-            if ($node['parent_id']==0)
-            {
-                $tree[$node['attr_id']] = &$nodes[$node['attr_id']];
-            }else
-            {
-                if (($nodes[$node['parent_id']])==0){
-                    $nodes[$node['parent_id']] = array();
-                }
-                $nodes[$node['parent_id']][$node['attr_id']] = &$nodes[$node['attr_id']];
-            }
-        $node=""; }
-    }
-    displayArrayRecursively($values['fld_id'], $tree);
-    $temp = '';
-    echo '</div>';
-}
-    
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/                                                                      
-                                                                ?>
-                                                                <?php //foreach($attributes->result() as $attribute):?>
-                                                                <?php
-//                                                                    echo '<div class="search_params left"> '.$attribute->fld_name;
-                                                                ?>
-                                                                <?php 
-//                                                                    foreach($attributes_values->result() as $attribute_values){
-//                                                                        if($attribute_values->fld_parent_id==0 && $attribute_values->fld_attribute_id==$attribute->fld_id){
-//                                                                            if($attribute->fld_name!="color"){
-//                                                                                echo '<div id="row_'.$attribute_values->fld_id.'" style="margin-left:10px;">';
-//                                                                                echo '<input type="checkbox" name="attr[]" value="'.$attribute->fld_id.'_'.$attribute_values->fld_id.'">';
-//                                                                                echo ' '.$attribute_values->fld_value;
-//                                                                                echo '</div>';
-//                                                                            }
-//                                                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                                                                            $children = get_children_by_par_id($attribute_values->fld_id);
-//                                                                            if(!empty($children)){
-//                                                                                foreach($children as $child){
-//                                                                                    echo '<div style="margin-left:10px;" id="row_'.$child->fld_id.'">';
-//                                                                                    echo '<input type="checkbox" name="attr[]" value="'.$attribute->fld_id.'_'.$attribute_values->fld_id.'">';
-//                                                                                    echo ' '.$child->fld_value;
-//                                                                                    print_r(get_each_child($child));        //recursive to n level
-//                                                                                    echo '</div>';
-//                                                                                }
-//                                                                            }
-//                                                                        }
-//                                                                    }
-                                                                   ?>
-                                                                <?php 
-//                                                                    echo '</div>';
-//                                                                    endforeach;
-                                                                ?>
-                                                                </div>
-<!-- :::::::::::::::::::::::::::::::::::::::::::price range slider:::::::::::::::::::::::::::::::::::::::::-->
-
-<div>Price Range 
-    <p>Rs.<input type="text" id="min_price" name="min_price" style="border: 0; color: #333333;background: none; font-weight: bold;width:30px;">- Rs.<input type="text" id="max_price" name="max_price" style="border: 0; color: #333333;background: none; font-weight: bold;"></p>
-    <div id="slider-range"></div>
-</div><br>
-<!-- :::::::::::::::::::::::::::::::::::::::::::price range slider:::::::::::::::::::::::::::::::::::::::::-->
-                                                                    <div class="submit">
-                                                                         <input type="submit" value="Search" class="submit">
-                                                                    </div>
-                                                                </form>
-                                                                <?php }?>
-                                                            </div>
-                                                        <?php $count_tab++;endforeach;?>
-                                                       
-                                                          
-
-                                                        <script type="text/javascript"> 
-                                                          $("#usual_header ul").idTabs(); 
-                                                        </script>
-                                                    </div>
-                                                </div>
-                                            
-                                              =======================================================================================
-                                                
-                                                
-                                            </div>
-                                    </div>
-                                </li>
-                                <li><span>Entire Site</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--::::::::::::::::::::::::::::::::::::::::Search Navigation Ends:::::::::::::::::::::::::::::::::::::::::::::::::::-->
+                    
                 </div>
             </div>
         </div>
+        <script type="text/javascript"> 
+            $("#usual_header ul").idTabs(); 
+          </script>

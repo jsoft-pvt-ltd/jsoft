@@ -81,7 +81,7 @@ function displayArrayRecursively($attr_id, $arr, $indent='', $new=false)
         {
             if (is_array($value))
             {
-                echo '<li>';
+                echo '<li style="border:none;">';
                 displayArrayRecursively($attr_id, $value, $indent . '&nbsp;&nbsp;&nbsp;',false);
                 echo " </li><br />";
             }

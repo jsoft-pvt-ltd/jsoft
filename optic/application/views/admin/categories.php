@@ -7,7 +7,6 @@
         </div>
         <div class="categories_container" style="padding: 5px;border:1px solid #f0f0f0;">
             <div class="categories">
-<!--                <a  class="operation" href="javascript:void(0);" class="add_attributes_container" onclick="categories_create_update(this);" name="<?php //echo base_url().'admin/categories_controller/insert_categories';?>">-->
                     <a  class="operation" href="javascript:void(0);" class="add_attributes_container" onclick="categories_create_update(this);" name="<?php echo base_url().'admin/category/insert_categories';?>">
                   [ Add Categories ]
                 </a>
@@ -27,7 +26,6 @@
                 foreach ($categories->result() as $category):?>
                     <tr id="row_<?php echo $category->fld_id;?>"  style="vertical-align: top;">
                         <td><?php echo $sn;?></td>
-    <!--                    <td><?php echo $sn;?> &raquo;</td>-->
                         <td>
                             <?php echo $category->fld_name?><br>
                             <ul>
@@ -37,8 +35,8 @@
                                     <div>
                                         <span>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $sub_category->fld_name;?></span>
                                         &nbsp;&nbsp;&nbsp;&nbsp;<div style="text-align:right;float:right;">
-                                            [ <a href="javascript:" class="up_sub" id="<?php echo $sub_category->fld_rank.'_'.$category->fld_id.'_'.$sub_category->fld_id;?>">Up</a> ] 
-                                            [ <a href="javascript:" class="down_sub" id="<?php echo $sub_category->fld_rank.'_'.$category->fld_id.'_'.$sub_category->fld_id;?>">Down</a> ]</div>
+                                            [ <a href="javascript:" title="" onmouseover="this.title = this.id;" class="up_sub" id="<?php echo $sub_category->fld_rank.'_'.$category->fld_id.'_'.$sub_category->fld_id;?>">Up</a> ] 
+                                            [ <a href="javascript:" title="" onmouseover="this.title = this.id;" class="down_sub" id="<?php echo $sub_category->fld_rank.'_'.$category->fld_id.'_'.$sub_category->fld_id;?>">Down</a> ]</div>
                                     </div>
                                 </li>
                                 <?php endif;?>
@@ -167,15 +165,6 @@
                 
             </div>     
             <div class="clear"></div> 
-            <!--<div class="label_input">-->
-                <!--<div class="label">Image</div>-->
-<!--                <div class="input"><a href="javascript:void(0)" onclick="alter(this)" class="deleteImg" style="margin-left:75px;position: absolute;" id="delete"><img src="<?php echo base_url().'images/cancel.png'?>"/></a>
-                    <img src="" id="img" width="80"/>
-                    <input type="file" name="image" id="image" style="display: none;"/>
-                </div>-->
-            <!--</div>-->
-               
-            <!--<div class="clear"></div>-->    
             <div class="sub_categories" id="sub_cat_0"></div>
         </div>
         <div class="clear"></div>
@@ -195,38 +184,23 @@
 </style>   
 <script>
 function alter(me)
-    {
-        //alert("here");return false;
-//        var id = me.id;
-//        var base_url = "<?php echo base_url();?>";
-//        $.ajax({
-//        type: "POST",
-//        url: base_url+'admin/category/delete_image/'+id,
-//        success: function(){
-            //alert(data);return false;
-            $(me).css('display','none');
-            $('#img').css('display','none');
-            $('#image').css('display','block');
-//            //alert('Done');
-//        }
-//        
-//    });
-    }
-    
+{
+    $(me).css('display','none');
+    $('#img').css('display','none');
+    $('#image').css('display','block');
+}
+
 function delete_subcat_image(me)
 {
-    //alert("here");return false;
     var id = me.id;
     var base_url = "<?php echo base_url();?>";
     $.ajax({
         type: "POST",
         url: base_url+'admin/category/delete_subcat_image/'+id,
         success: function(){
-            //alert(data);return false;
             $(me).css('display','none');
             $('#img_'+id).css('display','none');
             $('#subcat_image_'+id).css('display','block');
-    //            //alert('Done');
         }
 
     });

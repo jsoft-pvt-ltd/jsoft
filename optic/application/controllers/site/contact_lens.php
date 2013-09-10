@@ -24,14 +24,12 @@ class Contact_lens extends CI_Controller{
         $this->load->library('pagination');
         $config['base_url'] = base_url().'contact_lens/'.$per_page;
         $config['total_rows'] = $this->contact_lens_model->count_contact_lenses();
-        $config['uri_segment'] = 3;
-        $config['per_page'] = 9;
+        $config['uri_segment'] = 4;
+        $config['per_page'] = 5;
         $this->pagination->initialize($config);
-        $data['contact_lens'] = $this->contact_lens_model->get_contact_lenses($config['per_page'],$this->uri->segment(3));
+        $data['contact_lens'] = $this->contact_lens_model->get_contact_lenses($config['per_page'],$this->uri->segment(4));
         $data['pagination'] = $this->pagination->create_links();
         $data['title']='Contact Lens';
-        $data['total_rows'] = $config['total_rows'];
-        $data['per_page'] = 9;
         $this->load->view('site/header',$data);
         $this->load->view('site/contact_lens_view',$data);
         $this->load->view('site/footer');
@@ -60,9 +58,5 @@ class Contact_lens extends CI_Controller{
         $this->load->model('site/contact_lens_model');
         $this->contact_lens_model->insert_contact_lens($data);
         redirect(base_url().'contact_lens/9');
-    }
-    function lens_set_sort_by($sort_by, $display_items){
-        $this->session->set_userdata('sort_by',$sort_by);
-        redirect(base_url().'contact_lens/'.$display_items);
     }
 }

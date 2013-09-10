@@ -26,20 +26,18 @@ class Accessories extends CI_Controller{
         $this->load->library('pagination');
         $config['base_url'] = base_url().'accessories/'.$per_page;
         $config['total_rows'] = $this->accessories_model->count_accessories();
-        $config['uri_segment'] = 3;
-        $config['per_page'] = 9;
+        $config['uri_segment'] = 4;
+        $config['per_page'] = 5;
         $this->pagination->initialize($config);
-        $data['accessories'] = $this->accessories_model->get_accessories($config['per_page'],$this->uri->segment(3));
+        $data['accessories'] = $this->accessories_model->get_accessories($config['per_page'],$this->uri->segment(4));
         $data['pagination'] = $this->pagination->create_links();
         $data['title']='Accessories';
-        $data['total_items']= $config['total_rows'];
-        $data['per_page'] = 9;
         //print_r($data);exit;
         $this->load->view('site/header',$data);
         $this->load->view('site/accessories_view',$data);
         $this->load->view('site/footer');
     }
-    function selected_accessory($id,$edit_id=0){ //Here $edit_id is the fld_id of tbl_temp_accessories;
+    function selected_accessory($id,$edit_id){ //Here $edit_id is the fld_id of tbl_temp_accessories;
         $this->load->model('admin/product_model');
         $data['best_sellers'] = $this->product_model->select_best_seller_product(2,0);//num and offset for getting only two
         $data['accessory'] = $this->accessories_model->get_accessory($id);
@@ -93,9 +91,6 @@ class Accessories extends CI_Controller{
         $this->session->set_flashdata('msg1','The product is added to cart');
     }
     
-    function accesories_set_sort_by($sort_by, $display_items){
-        $this->session->set_userdata('sort_by',$sort_by);
-        redirect(base_url().'accessories/'.$display_items);
-    }
+    
 }
 ?>

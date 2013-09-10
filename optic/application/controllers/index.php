@@ -17,7 +17,7 @@ class Index extends CI_Controller {
         $config['per_page'] = 50;
         $this->pagination->initialize($config);
         $data['products'] = $this->product_model->select_best_seller_product($config['per_page'],$this->uri->segment(3));
-        $this->load->view('site/header',$data);
+		$this->load->view('site/header',$data);
         $this->load->view('site/index');
         $this->load->view('site/footer');
 	}

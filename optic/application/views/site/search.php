@@ -3,7 +3,10 @@
     $this->load->helper('admin/image_helper');  //load helper here
 ?>
 <link rel="stylesheet" href="<?php echo base_url();?>css/site/index.css"/>
-<div class="wrapper">
+<div class="pagination" style="border-bottom: 1px solid #CCCCCC;margin: 15px auto 15px;overflow: auto;padding-bottom: 20px;width: 1000px;text-align: center;">
+    <?php echo $this->pagination->create_links();?>
+</div>
+<div class="wrapper" style="margin-top:20px;">
     <?php if($products->num_rows()!=0):?>
         <ul>
             <?php $count=0;?>
@@ -19,7 +22,7 @@
                     </li>
                     <li>
                         <!--<div class="left">Price: </div>-->
-                        <div class="right price">$<?php echo $product->fld_sp;?></div>
+                        <div class="right price">$<?php echo $product->fld_price;?></div>
                     </li>
                     <li>
                         <div class="left wishlist">

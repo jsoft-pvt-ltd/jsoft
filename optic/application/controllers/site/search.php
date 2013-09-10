@@ -5,12 +5,10 @@
     }
     function index()
     {
-        
         $url = parse_url($_SERVER['REQUEST_URI']);
-        if(isset($url['query'])){
-            parse_str($url['query'], $params);
+        parse_str($url['query'], $params);
 //        print_r($params);exit;
-        }     
+                
         
         $sql = "";
         $sql = 'select tbl_product.* from tbl_product inner join tbl_product_attribute on tbl_product.fld_id = tbl_product_attribute.fld_product';
@@ -110,34 +108,9 @@
                 }
             }
             $sql = $sql .$attrparam;
-            $flag = 1;
+            
+                
         }
-        
-        if(isset($params['min_price']))
-        {
-            if($flag==1)
-            {
-                $sql = $sql ." and tbl_product.fld_sp >= ".$params['min_price'];
-            }
-            else if($flag==0)
-            {
-                $sql = $sql. " where tbl_product.fld_sp >= ".$params['min_price'];
-            }
-            $flag = 1;
-        }
-        if(isset($params['max_price']))
-        {
-            if($flag==1)
-            {
-                $sql = $sql ." and  tbl_product.fld_sp < ".$params['max_price'];
-                $atturl = $atturl."&";
-            }
-            else if($flag==0)
-            {
-                $sql = $sql. " where tbl_product.fld_sp < ".$params['max_price'];
-            }
-        }
-        
         $sql = $sql.' group by tbl_product.fld_id';
         if(isset($params['per_page']))
         {
@@ -148,7 +121,7 @@
             $current_page=0;
         }
         $config['base_url'] = base_url() . 'site/search/index/?'.$caturl.$suburl.$atturl;
-        $config['per_page'] = 9;
+        $config['per_page'] = 12;
         $config['page_query_string'] = TRUE;
         $config['num_links'] = 10;
         $config['total_rows'] = $this->search_model->count_search_product($sql);

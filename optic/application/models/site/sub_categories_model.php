@@ -41,47 +41,28 @@ class sub_categories_model extends CI_Model{
         $this->db->where('fld_id',$id);
         $this->db->delete('tbl_sub_categories');
     }
-    function interchange_rank($rank,$pos,$id, $sub_cid){
+    function interchange_rank($rank,$next_rank,$pos,$id, $sub_cid){
+        $this->db->trans_off();
 //        $this->db->trans_start();
-        $max_rank = $this->get_max_rank_by_cat_id($id);
-        $up_rank = $this->get_up_rank($rank,$id);
-        $down_rank = $this->get_down_rank($rank,$id);
-        
-        if($pos=='up'){
-            if($rank==$max_rank){
-                return;
-            }
-            $temp=$up_rank;
-        }
-        else{
-            if($rank==1){
-                return;
-            }
-            $temp=$down_rank;
-        }
-        $next_id = $this->get_id_by_rank_n_cat_id($temp, $id);//temp is rank value here and $id is the category id
-        echo "[ next_id:".$next_id." ][ rank: ".$rank." ]--[ temp: ".$temp." ][ sub_cid:".$sub_cid." ]";
-        $data = array(
-            array(
-               'fld_rank' => $temp,
-               'fld_id' => $sub_cid
-            )
-            ,
-            array(
-               'fld_rank' => $rank,
-               'fld_id' => $next_id
-            )
-         );
-
-         $this->db->update_batch('tbl_sub_categories', $data, 'fld_id'); 
-
-//        $this->db->trans_complete();
+        $next_id = $this->get_id_by_rank_n_cat_id($next_rank, $id);//temp is rank value here and $id is the category id
+        echo "[ next_id:".$next_id." ][ rank: ".$rank." ]--[ sub_cid:".$sub_cid." ][ new_rank: ".$next_rank." ]";
+        $this->change_rank($next_rank,$sub_cid);
+        $this->change_rank($rank,$next_id);
+//        $data = array(
+//            array(
+//               'fld_rank' => $next_rank,
+//               'fld_id' => $sub_cid
+//            )
+//            ,
+//            array(
+//               'fld_rank' => $rank,
+//               'fld_id' => $next_id
+//            )
+//         );
+//        $this->db->update_batch('tbl_sub_categories', $data, 'fld_id');
     }
     function change_rank($rnk,$id){
-//        echo $rank.'--'.$sub_cid.'-------';
-//        if($flag==true)
-            $query  = "UPDATE tbl_sub_categories SET fld_rank = '".$rnk."' WHERE fld_id ='".$id."'";
-//        else $query = "UPDATE tbl_sub_categories SET fld_rank = '".$rank."' WHERE fld_id ='".$sub_cid."'";
+        $query  = "UPDATE tbl_sub_categories SET fld_rank = '".$rnk."' WHERE fld_id ='".$id."'";
         $this->db->query($query);
     }
     function get_up_rank($rank,$id){

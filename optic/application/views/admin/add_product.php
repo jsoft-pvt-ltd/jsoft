@@ -159,10 +159,10 @@ function check_all(element)
         <div class="clear"></div>
         <div style="overflow:auto;">
             <div class="label" style="float:left;">Category</div>
-            <div style="float:left;"><select name="category">
+            <div style="float:left;"><select name="category" onchange="subcategory(this.value);">
                     <option>Select Category</option>
                     <?php foreach($categories->result() as $category):?>
-                    <option value="<?php echo $category->fld_id;?>" onclick="subcategory(<?php echo $category->fld_id;?>);"><?php echo $category->fld_name;?></option>
+                    <option value="<?php echo $category->fld_id;?>"><?php echo $category->fld_name;?></option>
                     <?php endforeach;?>
                 </select>
                 
@@ -250,6 +250,7 @@ function check_all(element)
                     <img src="<?php echo base_url().'images/size/lens_height.jpg'?>" style="width: 60px;" /><br/>
                     <input type="text" name="lens_height" id="lens_height" value="" style="width:33px;margin-left:10px" /> mm
                 </div>
+                
                 <div class="size">
                     <img src="<?php echo base_url().'images/size/total_width.jpg'?>" style="width: 60px;" /><br/>
                     <input type="text" name="total_width" id="total_width" value="" style="width:33px;margin-left:10px" /> mm

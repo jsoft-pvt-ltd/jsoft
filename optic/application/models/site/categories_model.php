@@ -35,36 +35,50 @@ class Categories_model extends CI_Model{
         }else
             return $max_rank;
     }
+    function get_min_rank($id=0){
+        $this->db->select_min('fld_rank');
+        if($id==0){
+            $min_rank = $this->db->get('tbl_categories')->row()->fld_rank;
+        }
+        else{
+            $this->db->where('fld_category_id',$id);
+            $min_rank = $this->db->get('tbl_sub_categories')->row()->fld_rank;
+        }
+        if($min_rank==""){
+            return 0;
+        }else
+            return $min_rank;
+    }
     function get_rank_by_id($id){//fld_id
         $this->db->select('fld_rank');
         $this->db->where('fld_id',$id);
         return $this->db->get('tbl_categories')->row()->fld_rank;
     }
-    function interchange_rank($rank,$pos){
+    function interchange_rank($rank,$next_rank,$pos){
         $this->db->trans_start();
-        if($id!=0){
-            $max_rank = $this->get_max_rank();
-        }
-        
-        
-        if($pos=='up'){
-            if($rank==$max_rank){
-                return;
-            }
-            $temp=$rank+1;
-        }
-        else{
-            if($rank==1){
-                return;
-            }
-            $temp=$rank-1;
-        }
+//        if($id!=0){
+//            $max_rank = $this->get_max_rank();
+//        }
+//        
+//        
+//        if($pos=='up'){
+//            if($rank==$max_rank){
+//                return;
+//            }
+//            $temp=$rank+1;
+//        }
+//        else{
+//            if($rank==1){
+//                return;
+//            }
+//            $temp=$rank-1;
+//        }
         
         //select the upper/lower ranked category id
-        $next_id = $this->get_id_by_rank($temp);//temp is rank value here;
+        $next_id = $this->get_id_by_rank($next_rank);//temp is rank value here;
 
         //change the rank of current id
-        $data['fld_rank'] = $temp;
+        $data['fld_rank'] = $next_rank;
         $this->db->where('fld_rank',$rank);
         $this->db->update('tbl_categories',$data);
 

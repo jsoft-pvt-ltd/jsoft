@@ -91,7 +91,7 @@
                         <option value="0" <?php if(isset($edit_accessory) && (0 == $status))echo 'selected="selected"'?>>Hide</option>
                     </select>
                 </div>
-                <?php if(isset($edit_attr)):
+                <?php if($edit_attr):
                     foreach($edit_attr as $attr):
 ?><input type ="hidden" name="attr_id[]" id="attr_id[]" value="<?php echo $attr->fld_id;?>" />
                 <div id="values_temp_<?php echo $attr->fld_id;?>">

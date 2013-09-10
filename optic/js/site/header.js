@@ -48,24 +48,24 @@ $(function(){
         }
     )
     
-    $("#glasses").hover(function(){
-        $(".glasses_menu").css('visibility',"visible");
-        $('.show').css({
-            display:'block',
-            visibility:'visible',
-            transition: '.11s ease-out 0.1s'
-        });
-        $(".show").parent('li').addClass('hovered');
-    },function(){
-        $(".glasses_menu").css({
-            visibility:"hidden",
-            transition: '.11s ease-out 0.1s'
-        });
-        $('ul.show').css({
-            visibility:'hidden',
-            transition: '.11s ease-out 0.1s'
-        });
-    });
+//    $("#glasses").hover(function(){
+//        $(".glasses_menu").css('visibility',"visible");
+//        $('.show').css({
+//            display:'block',
+//            visibility:'visible',
+//            transition: '.11s ease-out 0.1s'
+//        });
+//        $(".show").parent('li').addClass('hovered');
+//    },function(){
+//        $(".glasses_menu").css({
+//            visibility:"hidden",
+//            transition: '.11s ease-out 0.1s'
+//        });
+//        $('ul.show').css({
+//            visibility:'hidden',
+//            transition: '.11s ease-out 0.1s'
+//        });
+//    });
     
     $(".search").hover(function(){
         $(".search_menu").css('visibility',"visible");

@@ -17,14 +17,11 @@ class Accessories_model extends CI_Model{
     }
     
     function get_Accessories($num=0,$offset=0){
-        $sort_by = $this->session->userdata('sort_by');
+        
         if($offset == 0 || $offset == NULL || $offset==''){
             $offset = 0;
         }
         $query = 'SELECT * FROM tbl_accessories as a INNER JOIN tbl_accessories_attributes as b ON a.fld_id = b.fld_accessory_id WHERE a.fld_status=1 group by a.fld_id';
-        if(isset($sort_by) && $sort_by!=''){
-            $query = $query .$this->get_sorting_query($sort_by);
-        }
         $query = $query. " LIMIT ".$offset.','.$num;
         return($this->db->query($query));
     }
@@ -61,24 +58,5 @@ class Accessories_model extends CI_Model{
         $this->db->where('fld_user_id',$user_id);
         $this->db->where('fld_id',$id);
         return $this->db->get('tbl_temp_accessories')->row();
-    }
-    
-    function get_sorting_query($sort_by){
-        $query = '';
-        switch($sort_by){
-            case 'random':
-                $query = " ORDER BY RAND() ";
-                break;
-            case 'asc_price':
-                $query = " ORDER BY a.fld_sp asc ";
-                break;
-            case 'desc_price':
-                $query = " ORDER BY a.fld_sp desc ";
-                break;
-            case 'latest':
-                $query = " ORDER BY a.fld_id desc ";
-                break;
-        }
-        return $query;
     }
 }

@@ -1674,12 +1674,12 @@
     if(IsLoggedIn()){
         $qty = get_total_cart_qty($this->session->userdata('userId'));
             $total_cart_item = $qty->temp+$qty->accessories+$qty->contact_lenses;
-            echo $total_cart_item;
+//            echo $total_cart_item;
     }
     else {
         $qty = get_total_cart_qty('sess_'.$this->session->userdata('fld_id'));
         $total_cart_item = $qty->temp+$qty->accessories+$qty->contact_lenses;
-        echo $total_cart_item.'-----'.$qty->temp_price;
+//        echo $total_cart_item.'-----'.$qty->temp_price;
     }
     $this->config->set_item('total_cart_items', $total_cart_item);
 ?>

@@ -89,7 +89,7 @@ class Categories extends CI_Controller{
         redirect(base_url().'site/categories/index/'.$cat_id.'/'.$display_items);
     }
     
-    function subcat_set_sort_by($subcat_id, $display_items, $sort_by){
+     function subcat_set_sort_by($subcat_id, $display_items, $sort_by){
         $exp = explode('_', $subcat_id);
         $this->session->set_userdata('sort_by',$sort_by);
         redirect(base_url().$exp[0].'/'.$exp[1].'-'.$exp[2].'/'.$display_items);

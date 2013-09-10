@@ -324,77 +324,88 @@ function add_sub_categories(id){
 $(document).ready(function(){
     $(".up,.down").click(function(){
         var rank = this.id;
-        //alert(rank);
-        var max_rank = get_max_rank();
+        
+        var max_rank,min_rank,higher_rank,lower_rank;
+        var max_min_rank = get_max_min_rank();
+        max_min_rank = max_min_rank.split("-");
+        max_rank = max_min_rank[0];
+        min_rank = max_min_rank[1];
         var row = $(this).parents("tr:first");
+        var rowid;
+        
+        var thisrow = $(this).closest('tr');//.attr('id');
+        var higher_row = (thisrow.prev().attr('id'));
+        higher_rank = (($("#"+higher_row+" td:nth-child(3)").attr('id')).split("_"))[1];
+        var lower_row = (thisrow.next().attr('id'));
+        lower_rank = (($("#"+lower_row+" td:nth-child(3)").attr('id')).split("_"))[1];
+        
+        
         //var td = $(this).parents("td");
         if ($(this).is(".up")) {
             if(rank!=max_rank){                                 //to not to move up than top most
-
                 //for the current rank
-                ($('#rank_'+rank+' a.up').attr('id',(parseInt(rank, 10) + 1)));
-                ($('#rank_'+rank+' a.down').attr('id',(parseInt(rank, 10) + 1)));
+                ($('#rank_'+rank+' a.up').attr('id',(parseInt(higher_rank))));
+                ($('#rank_'+rank+' a.down').attr('id',(parseInt(higher_rank))));
                 //for the above rank
-                ($('#rank_'+(parseInt(rank, 10) + 1)+' a.up').attr('id',rank));
-                ($('#rank_'+(parseInt(rank, 10) + 1)+' a.down').attr('id',rank));
-                ($(this).parent().attr('id','rank_'+(parseInt(rank, 10) + 1)));
-                var rowid = (row.prev().attr('id'));
-                ($("#"+rowid+" td:nth-child(3)").attr('id','rank_'+rank));
-                //alert(td);
+                ($('#rank_'+(parseInt(higher_rank))+' a.up').attr('id',rank));
+                ($('#rank_'+(parseInt(higher_rank))+' a.down').attr('id',rank));
+                ($(this).parent().attr('id','rank_'+(parseInt(higher_rank))));
+                rowid = (row.prev().attr('id'));
+                $("#"+rowid+" td:nth-child(3)").attr('id','rank_'+rank);
+                
                 row.insertBefore(row.prev());
-                interchange_rank(rank,'up');
+                interchange_rank(rank,higher_rank,'up');
             }
         } else {
             if(rank!=1){
                 //for the current rank
-                ($('#rank_'+rank+' a.up').attr('id',(parseInt(rank, 10) - 1)));
-                ($('#rank_'+rank+' a.down').attr('id',(parseInt(rank, 10) - 1)));
+                ($('#rank_'+rank+' a.up').attr('id',(parseInt(lower_rank))));
+                ($('#rank_'+rank+' a.down').attr('id',(parseInt(lower_rank))));
                 //for the above rank
                 ($('#rank_'+(parseInt(rank, 10) - 1)+' a.up').attr('id',rank));
                 ($('#rank_'+(parseInt(rank, 10) - 1)+' a.down').attr('id',rank));
                 
-                ($(this).parent().attr('id','rank_'+(parseInt(rank, 10) - 1)));
-                var rowid = (row.next().attr('id'));
+                ($(this).parent().attr('id','rank_'+(parseInt(lower_rank))));
+                rowid = (row.next().attr('id'));
                 ($("#"+rowid+" td:nth-child(3)").attr('id','rank_'+rank));
                 row.insertAfter(row.next());
-                interchange_rank(rank,'down');
+                interchange_rank(rank,lower_rank,'down');
             }
         }
     });
 });
 
-function interchange_rank(rank,position,cat_id, sub_cat_id){ //cat id is the optional parameter
+function interchange_rank(rank,next_rank,position,cat_id, sub_cat_id){ //cat id is the optional parameter
     var address="";
     if(cat_id==null || cat_id ==''){
-        address = base_url+"admin/category/interchange_rank/"+rank+"/"+position;
+        address = base_url+"admin/category/interchange_rank/"+rank+"/"+next_rank+'/'+position;
     }
     else{
-        address = base_url+"admin/category/interchange_rank/"+rank+"/"+position+'/'+cat_id+"/"+sub_cat_id;
+        address = base_url+"admin/category/interchange_rank/"+rank+"/"+next_rank+'/'+position+'/'+cat_id+"/"+sub_cat_id;
     }
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: address,
         success: function(){
-            //alert('done');
         }
     });
 }
 
-function get_max_rank(id){
+function get_max_min_rank(id){
 
     if(id=="" || id==null){
         id='';
     }
-    var max_rank=0;
+    var max_min_ranks=0;
     $.ajax({
         type: "POST",
         async: false,
-        url: base_url+"admin/category/get_max_rank/"+id,
+        url: base_url+"admin/category/get_max_min_rank/"+id,
         success: function(data){
-            max_rank = data;
+            max_min_ranks = data;
         }
     });
-    return(max_rank);
+    return(max_min_ranks);
 }
 
 $(document).ready(function(){
@@ -404,49 +415,66 @@ $(document).ready(function(){
         var rank = (rank_id[0]);
         var cat_id = rank_id[1];
         var sub_cat_id = rank_id[2];
-        var max_rank = get_max_rank(cat_id);
-
+        var li;
+        
+        var max_rank,min_rank,higher_rank,lower_rank;
+        var max_min_rank = get_max_min_rank(cat_id);
+        max_min_rank = max_min_rank.split("-");
+        max_rank = max_min_rank[0];
+        min_rank = max_min_rank[1];
+        
+        //getting the higher rank;
+        if($(this).closest('li').prev('li').find('a').attr('id')){
+            temp = $(this).closest('li').prev('li').find('a').attr('id');
+            higher_rank = temp.split('_')[0];
+        }else higher_rank = 0;
+        
+        //getting the lower rank;
+        if($(this).closest('li').next('li').find('a').attr('id')){
+            temp = $(this).closest('li').next('li').find('a').attr('id');
+            lower_rank = temp.split('_')[0];
+        }else lower_rank = 0;
+        
         if ($(this).is(".up_sub")) {
-            if(rank!=max_rank){ 
+            if(rank!=max_rank && higher_rank!=0){ 
 
-                var li = $(this).closest('li');
+                li = $(this).closest('li');
                 var prev = li.prev();
                 if(prev.length){
                     li.detach().insertBefore(prev);
                 }
-                //for the current rank
+//                for the current rank
                 current_list_id = ($(li).attr('id'));
-                ($(this).attr('id',(parseInt(rank, 10) + 1)+'_'+cat_id));
-                ($('#'+current_list_id+' a.down_sub').attr('id',(parseInt(rank, 10) + 1)+'_'+cat_id));
+                ($(this).attr('id',(parseInt(higher_rank))+'_'+cat_id+"_"+sub_cat_id));
+                ($('#'+current_list_id+' a.down_sub').attr('id',(parseInt(higher_rank))+'_'+cat_id+"_"+sub_cat_id));
                 
                 var prev_id = ($(prev).attr('id'));
                 //for the above rank
-                ($('#'+prev_id+' a.up_sub').attr('id',rank+"_"+cat_id));
-                ($('#'+prev_id+' a.down_sub').attr('id',rank+"_"+cat_id));
-                //($(this).closest('li').attr('id',(parseInt(rank, 10) + 1)+'_'+cat_id));
+                sub_cat_id_next = ($('#'+prev_id+' a.up_sub').attr('id')).split('_')[2];
+                ($('#'+prev_id+' a.up_sub').attr('id',rank+"_"+cat_id+"_"+sub_cat_id_next));
+                ($('#'+prev_id+' a.down_sub').attr('id',rank+"_"+cat_id+"_"+sub_cat_id_next));
 
-                interchange_rank(rank,'up',cat_id,sub_cat_id);
+                interchange_rank(rank,higher_rank,'up',cat_id,sub_cat_id);
             }
         } else {
-            if(rank!=1){
-
-                var li = $(this).closest('li');
+            if(parseInt(rank)>parseInt(min_rank) && lower_rank!=0){
+//                alert(rank+".."+min_rank);
+                li = $(this).closest('li');
                 var next = li.next();
                 if(next.length){
                     li.detach().insertAfter(next);
                 }
                 
                 //for the current rank
-                ($(this).attr('id',(parseInt(rank, 10) - 1)+'_'+cat_id));
-                ($('#'+rank+"_"+cat_id).attr('id',(parseInt(rank, 10) - 1)+'_'+cat_id));
+                ($(this).attr('id',(parseInt(lower_rank))+'_'+cat_id+"_"+sub_cat_id));
+                ($('#'+rank+"_"+cat_id+'_'+sub_cat_id).attr('id',(parseInt(lower_rank))+'_'+cat_id+"_"+sub_cat_id));
                 
                 var next_id = ($(next).attr('id'));
                 //for the above rank
-                ($('#'+next_id+' a.up_sub').attr('id',rank+"_"+cat_id));
-                ($('#'+next_id+"_"+cat_id+' a.down_sub').attr('id',rank+"_"+cat_id));
-                //($(this).closest('li').attr('id',li_(parseInt(rank, 10) - 1)+'_'+cat_id));
-                //return false;
-                interchange_rank(rank,'down',cat_id);
+                sub_cat_id_next = ($('#'+next_id+' a.up_sub').attr('id')).split('_')[2];
+                ($('#'+next_id+' a.up_sub').attr('id',rank+"_"+cat_id+"_"+sub_cat_id_next));
+                ($('#'+next_id+' a.down_sub').attr('id',rank+"_"+cat_id+"_"+sub_cat_id_next));
+                interchange_rank(rank,lower_rank,'down',cat_id,sub_cat_id);
             }
         }
     });

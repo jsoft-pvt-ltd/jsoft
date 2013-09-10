@@ -7,12 +7,12 @@
     display: table-cell;
     padding: 2px 5px;
 }
+.primary_img{
+    height:145px !important;
+}
 
 </style>
-<?php 
-//    $this->load->helper('admin/image_helper');
-//    $images = select_images($accessory->fld_id);//Load helpers and others here
-?>
+
 <link rel="stylesheet" href="<?php echo base_url().'css/site/selected_product.css'?>" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/site/tabs.css';?>"/>
 <script type="text/javascript" src="<?php echo base_url().'js/site/jquery.tabify.js'?>"></script>
@@ -105,107 +105,13 @@
                             <?php endif;?>
                             <div class="td">Boxes</div>
                         </div>
-                        <div class="tr">
-                            <div class="td">
-                                Left Eye:
-                            </div>
-                            <?php if(isset($contact_lens_attr['power_minus']) || isset($contact_lens_attr['power_plus'])):?>
-                            <div class="td">
-                                <select name="fld_power_left" id="fld_power_left">
-                                    <?php foreach($contact_lens_attr['power_minus'] as $key=>$value):?>
-                                        <option value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
-                                    <?php endforeach;?>
-                                    <?php foreach($contact_lens_attr['power_plus'] as $key=>$value):?>
-                                        <?
-                                        if($value['fld_value']==0){
-                                            $selected = 'selected="selected"';
-                                        }else $selected='';
-                                        ?>
-                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <?php endif;?>
-<!--                            <div class="td">SPH</div>-->
-                            <?php if(isset($contact_lens_attr['cylinder']) && !empty($contact_lens_attr['cylinder'])):?>
-                            <div class="td">
-                                <select name="fld_cyl_left">
-                                    
-                                    <?php foreach($contact_lens_attr['cylinder'] as $key=>$value):?>
-                                        <?
-                                        if($value['fld_value']==0){
-                                            $selected = 'selected="selected"';
-                                        }else $selected='';
-                                        ?>
-                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <?php endif;?>
-                            <?php if(isset($contact_lens_attr['base_curve']) && !empty($contact_lens_attr['base_curve'])):?>
-                            <div class="td">
-                                <select name="fld_base_curve_left">
-                                    
-                                    <?php foreach($contact_lens_attr['base_curve'] as $key=>$value):?>
-                                        <?
-                                        if($value['fld_value']==0){
-                                            $selected = 'selected="selected"';
-                                        }else $selected='';
-                                        ?>
-                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <?php endif;?>
-                            <?php if(isset($contact_lens_attr['axis']) && !empty($contact_lens_attr['axis'])):?>
-                            <div class="td">
-                                <select name="fld_axis_left">
-                                    
-                                    <?php foreach($contact_lens_attr['axis'] as $key=>$value):?>
-                                        <?
-                                        if($value['fld_value']==0){
-                                            $selected = 'selected="selected"';
-                                        }else $selected='';
-                                        ?>
-                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <?php endif;?>
-                            <?php if(isset($contact_lens_attr['diameter']) && !empty($contact_lens_attr['diameter'])):?>
-                            <div class="td">
-                                <select name="fld_diameter_left">
-                                    
-                                    <?php foreach($contact_lens_attr['diameter'] as $key=>$value):?>
-                                        <?
-                                        if($value['fld_value']==0){
-                                            $selected = 'selected="selected"';
-                                        }else $selected='';
-                                        ?>
-                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
-                                    <?php endforeach;?>
-                                </select>
-                            </div>
-                            <?php endif;?>
-                            <div class="td">
-                                <select name="fld_boxes_left">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6" selected="selected">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                        </div>
                         
                         <div class="tr">
                             <?php if(isset($contact_lens_attr['power_minus']) || isset($contact_lens_attr['power_plus'])):?>
-                            <div class="td">Right Eye:</div>
+                            <div class="td">
+                                <input type="checkbox" name="right_checkbox" id="right_checkbox" class="eye_checkbox"/>
+                                Right (OD):
+                            </div>
                             <div class="td">
                                 <select name="fld_power_right">
                                     <?php foreach($contact_lens_attr['power_minus'] as $key=>$value):?>
@@ -299,6 +205,104 @@
                                 </select>
                             </div>
                         </div>
+                        
+                        <div class="tr">
+                            <div class="td">
+                                <input type="checkbox" name="left_checkbox" id="left_checkbox" class="eye_checkbox"/>
+                                Left (OS):
+                            </div>
+                            <?php if(isset($contact_lens_attr['power_minus']) || isset($contact_lens_attr['power_plus'])):?>
+                            <div class="td">
+                                <select name="fld_power_left" id="fld_power_left">
+                                    <?php foreach($contact_lens_attr['power_minus'] as $key=>$value):?>
+                                        <option value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
+                                    <?php endforeach;?>
+                                    <?php foreach($contact_lens_attr['power_plus'] as $key=>$value):?>
+                                        <?
+                                        if($value['fld_value']==0){
+                                            $selected = 'selected="selected"';
+                                        }else $selected='';
+                                        ?>
+                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <?php endif;?>
+<!--                            <div class="td">SPH</div>-->
+                            <?php if(isset($contact_lens_attr['cylinder']) && !empty($contact_lens_attr['cylinder'])):?>
+                            <div class="td">
+                                <select name="fld_cyl_left">
+                                    
+                                    <?php foreach($contact_lens_attr['cylinder'] as $key=>$value):?>
+                                        <?
+                                        if($value['fld_value']==0){
+                                            $selected = 'selected="selected"';
+                                        }else $selected='';
+                                        ?>
+                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <?php endif;?>
+                            <?php if(isset($contact_lens_attr['base_curve']) && !empty($contact_lens_attr['base_curve'])):?>
+                            <div class="td">
+                                <select name="fld_base_curve_left">
+                                    <?php foreach($contact_lens_attr['base_curve'] as $key=>$value):?>
+                                        <?
+                                        if($value['fld_value']==0){
+                                            $selected = 'selected="selected"';
+                                        }else $selected='';
+                                        ?>
+                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <?php endif;?>
+                            <?php if(isset($contact_lens_attr['axis']) && !empty($contact_lens_attr['axis'])):?>
+                            <div class="td">
+                                <select name="fld_axis_left">
+                                    
+                                    <?php foreach($contact_lens_attr['axis'] as $key=>$value):?>
+                                        <?
+                                        if($value['fld_value']==0){
+                                            $selected = 'selected="selected"';
+                                        }else $selected='';
+                                        ?>
+                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <?php endif;?>
+                            <?php if(isset($contact_lens_attr['diameter']) && !empty($contact_lens_attr['diameter'])):?>
+                            <div class="td">
+                                <select name="fld_diameter_left">
+                                    
+                                    <?php foreach($contact_lens_attr['diameter'] as $key=>$value):?>
+                                        <?
+                                        if($value['fld_value']==0){
+                                            $selected = 'selected="selected"';
+                                        }else $selected='';
+                                        ?>
+                                        <option <?php echo $selected;?> value="<?php echo $value['fld_value'];?>"><?php echo $value['fld_value'];?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <?php endif;?>
+                            <div class="td">
+                                <select name="fld_boxes_left">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6" selected="selected">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <?php endif;?>
                         <div class="patient_info">
@@ -385,6 +389,31 @@
                 required:"Please select an <b>Accessory Color</b>. &raquo"
             }
         }
+        });
     });
-   })
+    $(function(){
+        $(".eye_checkbox").each(function(){
+            toggle_select(this);
+        });
+        $(".eye_checkbox").click(function(){
+            toggle_select(this);
+        })
+    })
+    function toggle_select(element){
+        if ($(element).is(':checked')) {
+        $(element).closest('div.tr').children('.td').children('select').attr('disabled','disabled');
+        } else {
+            $(element).closest('div.tr').children('.td').children('select').removeAttr('disabled');
+        }
+    }
 </script>
+<!--function(){
+            if ($(this).is(':checked')) {
+            //        $('#idOfTheDIV :input').attr('disabled', true);
+            alert('checked');
+                } else {
+                    alert('unchecked');
+            //        $('#idOfTheDIV :input').removeAttr('disabled');
+                }
+            }
+        }); -->
