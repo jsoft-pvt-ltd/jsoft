@@ -32,7 +32,7 @@
                     
                 </div>
                 <div class="description">
-                    <p>
+                    <p class="p">
                         <?php echo $descriptions->fld_description;?>
                     </p>
                 </div>
